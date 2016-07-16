@@ -1,0 +1,5 @@
+services:
+    vkr_custom_logger.logger:
+        class: VKR\CustomLoggerBundle\Services\CustomLogger
+        arguments:
+            - "%kernel.root_dir%"
