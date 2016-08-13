@@ -17,10 +17,11 @@ $logger->addInfo('hello world');
 ```
 
 The 'hello world' message with Monolog's info and timestamp will be printed to the file
-at */app/logs/my_log.log*. If this file does not exist, a *FileNotFoundException* will be thrown.
+at ```/app/logs/my_log.log``` (```/var/logs/my_log.log``` for Symfony3). If this file does not exist,
+a ```FileNotFoundException``` will be thrown.
 
-If you are initializing the service manually, you will need to specify the location of the
-PARENT of your /logs/ directory without a trailing slash:
+If you are initializing the service manually, you will need to specify the location of your
+```app/``` directory without a trailing slash:
 
 ```
 $logger = new VKR\CustomLoggerBundle\Services\CustomLogger('/my/app/dir');
@@ -44,17 +45,19 @@ API
 
 *void CustomLogger::__construct(string $rootDir)*
 
-Sets path to the directory one level above /logs/
+Sets path to the ```app/``` directory.
 
-*Monolog\Logger CustomLogger::setLogger(string $logName)*
+*Monolog\Logger CustomLogger::setLogger(string $logName, string $extension = '.log', string $logDir = null)*
 
-The argument is a name of the log file without path and .log extension. This file must
-reside at */{rootDir}/logs/*
+The first argument is a name of the log file without path and extension. If the third argument
+is not given, the directory will default to ```/app/logs``` for Symfony2, and ```/var/logs```
+for Symfony3.
 
-*string CustomLogger::getLogFile(string $logName)*
+*string CustomLogger::getLogfile(string $logName = null)*
 
-Displays full path to the log file - in case you forget where it should be.
+Displays full path to the log file - in case you forget where it should be. Providing the
+optional argument is deprecated.
 
-*string StreamHandler::getUrl()*
+*string StreamHandler::getLogDir()*
 
-Displays full path (not URL!) to the currently active log file.
+Displays full path to the directory with log files. Should be called only after ```setLogger()```.
