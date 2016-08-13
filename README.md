@@ -47,7 +47,7 @@ API
 
 Sets path to the ```app/``` directory.
 
-*Monolog\Logger CustomLogger::setLogger(string $logName, string $extension = '.log', string $logDir = null)*
+*Monolog\Logger CustomLogger::setLogger(string $logName, string $extension = 'log', string $logDir = null)*
 
 The first argument is a name of the log file without path and extension. If the third argument
 is not given, the directory will default to ```/app/logs``` for Symfony2, and ```/var/logs```
