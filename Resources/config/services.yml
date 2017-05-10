@@ -3,3 +3,13 @@ services:
         class: VKR\CustomLoggerBundle\Services\CustomLogger
         arguments:
             - "%kernel.root_dir%"
+
+    vkr_custom_logger.log_creator:
+        class: VKR\CustomLoggerBundle\Services\LogCreator
+        arguments:
+            - "@vkr_custom_logger.decorators.file"
+            - "%vkr_custom_logger.logs_dir%"
+            - "%vkr_custom_logger.manifest%"
+
+    vkr_custom_logger.decorators.file:
+        class: VKR\CustomLoggerBundle\Decorators\FileDecorator
